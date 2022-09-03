@@ -92,3 +92,4 @@ const CatListItem = Vue.component("cat-list-item", {
     }
   });
   
+  
