@@ -49,9 +49,9 @@ ul {
 }
 .leaders h2 {
   text-align: center;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
-  padding-bottom: 40px;
+  padding-bottom: 25px;
   font-family: "Amatic SC", sans-serif;
   color: var(--white);
 }
@@ -76,7 +76,7 @@ ul {
 .podium {
   padding: 1em;
   text-align: center;
-  background-color: var(--white);
+  background-color: rgb(194, 222, 255);
   height: 160px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -111,7 +111,7 @@ ul {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 200;
-  padding: 30px 0;
+  padding: 20px 0;
   font-weight: 700;
   font-family: "Amatic SC", sans-serif;
 }
