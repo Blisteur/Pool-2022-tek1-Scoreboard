@@ -92,4 +92,13 @@ const CatListItem = Vue.component("cat-list-item", {
     }
   });
   
-  
+  $(document).ready(
+    function() {
+   
+    // inspired by http://jsfiddle.net/arunpjohny/564Lxosz/1/
+    $('.table-responsive-stack').find("th").each(function (i) {
+       $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">'+ $(this).text() + ':</span> ');
+       $('.table-responsive-stack-thead').hide();
+    })
+    }
+  );

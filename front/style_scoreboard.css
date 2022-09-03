@@ -34,16 +34,17 @@ ul {
 
 .hud_all {
   display: flex;
+  justify-content: flex-start;
 }
 
 .container {
-  width: 100%;
   max-width: 600px;
-  padding: 2em 0;
+  padding: 2em 0 0 0;
   display: inline-block;
   grid-template-rows: 400px 1fr;
   grid-column-gap: 1em;
   margin-left: 40px;
+  margin-right: 0px;
 }
 
 .container_main {
@@ -81,6 +82,7 @@ ul {
   grid-template-columns: repeat(3, 1fr);
   align-items: flex-end;
   grid-gap: 10px;
+  margin-bottom: 0;
 }
 
 .lead-cats {
@@ -104,7 +106,7 @@ ul {
 }
 .podium h4 {
   font-family: "Amatic SC", sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--primary);
 }
 .podium p {
@@ -123,7 +125,7 @@ ul {
 .board {
   background-color: var(--white);
   border-radius: 10px;
-  padding: 1em;
+  padding: 0 1em;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
@@ -131,12 +133,13 @@ ul {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 200;
-  padding: 20px 0;
+  padding: 18px 0;
   font-weight: 700;
   font-family: "Amatic SC", sans-serif;
 }
 .board ul {
   position: relative;
+  margin-bottom: 0;
 }
 
 .cat-item {
@@ -170,7 +173,7 @@ ul {
 }
 .cat-item__info h4 {
   font-family: "Amatic SC", serif;
-  font-size: 1.7rem;
+  font-size: 2.5rem;
   color: var(--primary);
   margin-left: 20px;
 }
@@ -180,6 +183,7 @@ ul {
 .cat-item__points p {
   font-size: 1.5rem;
   color: rgb(73, 73, 73);
+  margin-bottom: 0;
 }
 .cat-item__points img {
   width: 25px;
