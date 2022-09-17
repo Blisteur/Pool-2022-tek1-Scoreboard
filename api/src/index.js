@@ -9,6 +9,7 @@ const app = express();
 const auth = require('./middleware/auth');
 const notFound = require('./middleware/notFound');
 const db = require('./config/db.json');
+const { randomInt } = require('crypto');
 
 // adding Helmet to enhance your Rest API's security
 app.use(helmet());
@@ -21,15 +22,6 @@ app.use(cors());
 
 // adding morgan to log HTTP requests
 app.use(morgan('combined'));
-
-//router
-// app.use((req, res, next) => {
-//   console.log('Time:', Date.now());
-//   console.log('Request:', req.method, req.url);
-//   console.log('auth:', req.headers.authorization);
-//   console.log('user-agent:', req.headers['user-agent']);
-//   next();
-// });
 
 //open read only route
 
@@ -56,9 +48,8 @@ app.post('/api/scoreboard', auth.verifyAuth, (req, res) => {
 
   if (teamid != undefined && score != undefined && event != undefined && user != undefined && teamname != undefined) {
     console.log('teamid:', teamid, 'score:', score, 'event:', event, 'user:', user, 'teamname:', teamname);
-    db.teams[teamid].score += score;
+    db.teams.find(team => team.id === teamid).score += score;
     db.events.push({name: event, team: teamname, score: score, user: user});
-    console.log(db.teams[teamid].score);
     console.log(db.events);
     updateJson();
     res.status(200).json({ "msg": "score added" });
@@ -100,6 +91,26 @@ app.put('/api/quests', auth.verifyAuth, (req, res) => {
   } else {
     res.status(400).json({ "msg": "bad request" });
   }
+});
+
+// route secret flag
+
+app.get('/api/flag', (req, res) => {
+  //random flag
+  randomInt(0,15, (err, flag) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ "msg": "internal server error" });
+    } else {
+      console.log('flag:', flag);
+      if (flag == 10) {
+        res.status(200).sendFile('flag.txt', { root: __dirname });
+        return;
+      }
+      var random = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      res.status(200).send(random);
+    }
+  });
 });
 
 app.use(notFound.notFound);

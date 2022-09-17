@@ -1,1 +1,1 @@
-{"teams":[{"id":1,"name":"Team 1","score":0,"logo":"logo1.png"},{"id":2,"name":"Team 2","score":0,"logo":"logo2.png"},{"id":3,"name":"Team 3","score":0,"logo":"logo3.png"},{"id":4,"name":"Team 4","score":0,"logo":"logo4.png"}],"quest":[],"events":[]}
+{"teams":[{"id":1,"name":"Mage","score":0,"logo":"mage.png"},{"id":2,"name":"Voleur","score":0,"logo":"voleur.png"},{"id":3,"name":"Clerc","score":0,"logo":"clerc.png"},{"id":4,"name":"Guerrier","score":0,"logo":"guerrier.png"}],"quest":[],"events":[]}

@@ -15,17 +15,9 @@ const CatListItem = Vue.component("cat-list-item", {
         return this.colors[this.rank];
       }
     },
-    methods: {
-      pointIncrement: function () {
-        this.cat.points++;
-      },
-      pointDecrement: function () {
-        this.cat.points--;
-      }
-    }
   });
   
-  new Vue({
+  var vue = new Vue({
     el: "#app",
   
     components: {
@@ -38,22 +30,22 @@ const CatListItem = Vue.component("cat-list-item", {
           {
             name: "Mage",
             photo: "mage.png",
-            points: 30
+            points: 0
           },
           {
             name: "Voleur",
             photo: "voleur.png",
-            points: 88
+            points: 0
           },
           {
             name: "Clerc",
             photo: "clerc.png",
-            points: 15
+            points: 0
           },
           {
             name: "Guerrier",
             photo: "guerrier.png",
-            points: 60
+            points: 0
           }
         ],
         catRank: [
@@ -102,3 +94,50 @@ const CatListItem = Vue.component("cat-list-item", {
     })
     }
   );
+
+// caall api
+function getEvents() {
+  fetch('http://127.0.0.1:8080/api/events')
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      var events = document.getElementById('scoreboardHistory');
+      events.innerHTML = '';
+      data.reverse().forEach((score, index) => {
+        var tr = document.createElement('tr');
+        var tddesc = document.createElement('td');
+        var tdpoint = document.createElement('td');
+        var tdwho = document.createElement('td');
+        var tdteam = document.createElement('td');
+        tddesc.innerHTML = score.name;
+        tdpoint.innerHTML = score.score;
+        tdwho.innerHTML = score.user;
+        tdteam.innerHTML = score.team;
+        tr.appendChild(tddesc);
+        tr.appendChild(tdpoint);
+        tr.appendChild(tdwho);
+        tr.appendChild(tdteam);
+        events.appendChild(tr);
+      });
+    });
+}
+
+// update scoreboard
+function updateScoreboard() {
+  fetch('http://127.0.0.1:8080/api/scoreboard')
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      data.forEach((score, index) => {
+        vue.cats[index].points = score.score;
+      });
+    });
+}
+
+getEvents();
+updateScoreboard();
+setInterval(getEvents, 10000);
+setInterval(updateScoreboard, 10000);
