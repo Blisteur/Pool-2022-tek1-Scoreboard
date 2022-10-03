@@ -97,7 +97,7 @@ const CatListItem = Vue.component("cat-list-item", {
 
 // caall api
 function getEvents() {
-  fetch('http://api.pool2022.broteam.fr/api/events')
+  fetch('https://api.pool2022.broteam.fr/api/events')
     .then((response) => {
       return response.json();
     })
@@ -125,7 +125,7 @@ function getEvents() {
 
 // update scoreboard
 function updateScoreboard() {
-  fetch('http://api.pool2022.broteam.fr/api/scoreboard')
+  fetch('https://api.pool2022.broteam.fr/api/scoreboard')
     .then((response) => {
       return response.json();
     })
