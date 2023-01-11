@@ -8,4 +8,4 @@ services:
     volumes:
     - ./src:/app/src
     ports:
-      - "25500:25500"
+      - "127.0.0.1:4545:4545"

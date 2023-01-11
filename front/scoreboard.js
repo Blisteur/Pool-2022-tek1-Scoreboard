@@ -28,22 +28,22 @@ const CatListItem = Vue.component("cat-list-item", {
       return {
         cats: [
           {
-            name: "Mage",
+            name: "Théoriciens",
             photo: "mage.png",
             points: 0
           },
           {
-            name: "Voleur",
+            name: "Hackers",
             photo: "voleur.png",
             points: 0
           },
           {
-            name: "Clerc",
+            name: "Testeurs",
             photo: "clerc.png",
             points: 0
           },
           {
-            name: "Guerrier",
+            name: "SysAdmin",
             photo: "guerrier.png",
             points: 0
           }
@@ -96,12 +96,20 @@ const CatListItem = Vue.component("cat-list-item", {
   );
 
 // caall api
+
+var nbUpdate = 0;
+var audio = new Audio('assets/new.mp3');
+
 function getEvents() {
   fetch('https://api.pool2022.broteam.fr/api/events')
     .then((response) => {
       return response.json();
     })
     .then((data) => {
+      if (data.length > nbUpdate) {
+        nbUpdate = data.length;
+        audio.play();
+      }
       var events = document.getElementById('scoreboardHistory');
       events.innerHTML = '';
       data.reverse().forEach((score, index) => {
@@ -110,10 +118,10 @@ function getEvents() {
         var tdpoint = document.createElement('td');
         var tdwho = document.createElement('td');
         var tdteam = document.createElement('td');
-        tddesc.innerHTML = score.name;
-        tdpoint.innerHTML = score.score;
-        tdwho.innerHTML = score.user;
-        tdteam.innerHTML = score.team;
+        tddesc.textContent = score.name;
+        tdpoint.textContent = score.score;
+        tdwho.textContent = score.user;
+        tdteam.textContent = score.team;
         tr.appendChild(tddesc);
         tr.appendChild(tdpoint);
         tr.appendChild(tdwho);

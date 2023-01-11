@@ -48,7 +48,7 @@ app.post('/api/scoreboard', auth.verifyAuth, (req, res) => {
 
   if (teamid != undefined && score != undefined && event != undefined && user != undefined && teamname != undefined) {
     console.log('teamid:', teamid, 'score:', score, 'event:', event, 'user:', user, 'teamname:', teamname);
-    db.teams.find(team => team.id === teamid).score += score;
+    db.teams.find(team => team.id === teamid).score += parseInt(score);
     db.events.push({name: event, team: teamname, score: score, user: user});
     console.log(db.events);
     updateJson();
